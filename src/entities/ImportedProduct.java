@@ -10,7 +10,7 @@ public class ImportedProduct extends Product {
 	public ImportedProduct(String name, Double price, Double customFee) {
 		super(name, price);
 		this.customFee = customFee;
-	}
+	} 
 
 	public Double getCustomFee() {
 		return customFee;
@@ -20,8 +20,17 @@ public class ImportedProduct extends Product {
 		this.customFee = customFee;
 	}
 	
+	public Double totalPrice() {
+		return getPrice() + customFee;
+	}
+	
 	@Override
-	public String pricetag() {
-		return super.pricetag() + "(Custom fee: $" + customFee + ")"; 
+	public String priceTag() {
+		return getName() 
+				+ " $ " 
+				+ String.format("%.2f", totalPrice())
+				+ " (Customs fee: $ " 
+				+ String.format("%.2f", customFee)
+				+ ")";
 	}
 }
